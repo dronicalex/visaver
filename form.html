@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>VISAVER</title>
+		<link rel="shortcut icon" href="img/faw.png">
+	</head>
+	<body>
+		<div>
+			<p>Большое спасибо за ваш интерес к ViSaver!</p>
+			Продукт находится в стадии альфа-тестирования. Оставьте, пожалуйста, ваш email и мы оповестим вас о его готовности.
+			<form action="" class="form">
+				<input type="text" placeholder="Имя" name='name'>
+				<input type="mail" placeholder="Почта" class="_mail" name='mail'>
+				<button type="submit">Отправить</button>
+
+			</form>
+			<a href="https://visaver.com/"> <span><</span>Назад </a>
+			</div>
+			<style>
+			@import url(https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900&display=swap&subset=cyrillic-ext);
+			body{
+				font-family: Rubik;
+				background-color: #000;
+				color: #fff;
+				font-size: 20px;
+			}
+			div{
+				max-width: 800px;
+				margin: 0px auto;
+				padding: 0px 20px;
+			}
+			p{
+font-size: 30px;
+				}
+				form{
+					margin-top: 30px;
+					display: flex;
+					flex-direction: column;
+					max-width: 270px;
+					
+				}
+				input{
+					margin-bottom: 10px;
+					padding: 10px 20px;	
+					font-size: 14px;
+					}
+					a{
+						display: block;
+						/* margin-top: -60px; */
+						color: #E126FF;
+						text-decoration: none;
+						
+					}
+					span{
+							padding: 0px 10px;
+						}
+					button{
+						padding: 20px 50px;
+		background: #E126FF;
+		border-radius: 10px;
+		color: #fff;
+		width: max-content;
+		margin-bottom: 40px;
+		font-size: 20px;
+		width: 100%;
+		font-family: Rubik;
+					}
+		</style>
+			<script>
+			let formTree = document.querySelector('.form')
+let er = document.querySelector('._err')
+formTree.addEventListener('submit', formSend)
+
+
+
+
+async function formSend(e) {
+	e.preventDefault()
+
+
+	function vall() {
+
+		const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+
+const input = document.querySelector('._mail');
+let s
+function onInput() {
+  if (isEmailValid(input.value)) {
+    s = true
+  } else {
+    alert('Укажите вашу почту')
+	s = false
+  }
+}
+onInput()
+
+if(s){
+	return true
+} else{
+	return false
+}
+// input.addEventListener('input', onInput);
+
+function isEmailValid(value) {
+return EMAIL_REGEXP.test(value);
+}
+	}
+
+
+	let formDataOne = new FormData(formTree)
+
+	
+	if (vall()) {
+		let response = await fetch('sendmail.php', {
+			method: 'POST',
+			body: formDataOne
+
+		})
+		alert('Ваши данные отправлены')
+
+	}
+
+}
+		</script>
+		</body>
+	</html>
